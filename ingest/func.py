@@ -13,4 +13,4 @@ def main(req: Any):
         line = line.strip()
         resp.append(CloudEvent(attributes, {"city": line}))
     
-    return 200, "\n-----\n".join([to_json(e) for e in resp])
+    return "\n-----\n".join([to_json(e) for e in resp])
