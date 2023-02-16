@@ -10,7 +10,7 @@ def main(req: Any):
 
     resp = []
     for line in req.stream:
-        line = line.strip()
+        line = str(line).strip()
         print("Handling '%s'", line)
         resp.append(CloudEvent(attributes, {"city": line}))
     
