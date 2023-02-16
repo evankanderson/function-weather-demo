@@ -6,7 +6,7 @@ import requests
 
 def main(req: Any):
     # Use the same attributes for all events
-    attributes = dict(type="com.example.cityquery")
+    attributes = dict(type="com.example.cityquery", source="upload")
 
     resp = []
     for line in req.stream:
