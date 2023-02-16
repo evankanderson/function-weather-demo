@@ -9,8 +9,9 @@ def main(req: Any):
     attributes = dict(type="com.example.cityquery")
 
     resp = []
-    for line in req.data:
+    for line in req.stream:
         line = line.strip()
+        print("Handling '%s'", line)
         resp.append(CloudEvent(attributes, {"city": line}))
     
     return "\n-----\n".join([to_json(e) for e in resp])
