@@ -14,4 +14,4 @@ def main(req: Any):
         print("Handling '%s'", line)
         resp.append(CloudEvent(attributes, {"city": line}))
     
-    return "\n-----\n".join([to_json(e) for e in resp])
+    return "\n-----\n".join([str(to_json(e)) for e in resp])
