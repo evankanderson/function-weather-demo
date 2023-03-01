@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: redis-commander
+  description: Redis UI
+  tags:
+    - buildpacks
+    - knative
+    - off-the-shelf
+    - nodejs
+  annotations:
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=redis-commander'
+spec:
+  type: service
+  lifecycle: experimental
+  owner: default-team
