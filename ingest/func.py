@@ -12,7 +12,7 @@ def main(req: Any):
     # Use the same attributes for all events
     attributes = dict(type="com.example.cityquery", source="upload")
 
-    reader = csv.reader(io.TextIOWrapper(req.stream, encoding='utf-8'), strict=True)
+    reader = csv.reader(io.TextIOWrapper(req.stream, encoding='utf-8'), dialect='unix', strict=True)
     resp = []
 
     handleEvent = lambda e: resp.append(to_json(e).decode('utf-8'))
@@ -22,7 +22,7 @@ def main(req: Any):
 
     for row in reader:
         logging.info("Handling '%s'", row[0])
-        event = CloudEvent(attributes, {"city": row[0], "state": row[1]})
+        event = CloudEvent(attributes, {"city": row[0], "state": row[1], "zip": row[2]})
         handleEvent(event)
     
     return "\n-----\n".join(resp)
