@@ -1,16 +1,16 @@
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: python-function
+  name: fetch
   labels:
     apps.tanzu.vmware.com/workload-type: web
-    app.kubernetes.io/part-of: python-function
+    app.kubernetes.io/part-of: fetch
 spec:
   source:
     git:
-      url: <https URL for your generated project's Git repository>
+      url: https://github.com/evankanderson/function-weather-demo.git
       ref:
-        branch: fetch
+        branch: main
   build:
     env:
       - name: BP_FUNCTION
