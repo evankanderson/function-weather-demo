@@ -6,11 +6,7 @@ from redis import Sentinel, Redis
 
 noaa = noaa_sdk.NOAA()
 
-redis = None
-if os.environ.get('REDIS_SENTINEL'):
-    redis = Sentinel([(os.environ['REDIS_SENTINEL'], 26379)])
-else:
-    redis = Redis(host=os.environ['REDIS_HOST'], )
+redis = initRedis()
 
 def fetch(data: Any, attributes: dict):
     zip = data.get('zip')
@@ -22,4 +18,11 @@ def fetch(data: Any, attributes: dict):
     logging.info("Stored %s for %s", res[0].get('shortForecast'), zip)
 
     # Your function implementation goes here
+    return None
+
+def initRedis():
+    if os.environ.get('REDIS_SENTINEL'):
+        return Sentinel([(os.environ['REDIS_SENTINEL'], 26379)])
+    if os.environ.get('REDIS_HOST'):
+        return Redis(host=os.environ['REDIS_HOST'])
     return None
