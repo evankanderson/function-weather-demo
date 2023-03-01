@@ -15,7 +15,7 @@ def main(req: Any):
     reader = csv.reader(io.TextIOWrapper(req.stream, encoding='utf-8'), strict=True)
     resp = []
 
-    handleEvent = lambda(e): resp.append(to_json(e).decode('utf-8'))
+    handleEvent = lambda e: resp.append(to_json(e).decode('utf-8'))
 
     if os.environ('K_SINK'):
         handleEvent = SendEvent
