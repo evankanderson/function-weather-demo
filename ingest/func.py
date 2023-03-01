@@ -1,6 +1,7 @@
 import csv
 import io
 import logging
+import os
 from typing import Any
 
 from cloudevents.http import CloudEvent
@@ -12,11 +13,20 @@ def main(req: Any):
     attributes = dict(type="com.example.cityquery", source="upload")
 
     reader = csv.reader(io.TextIOWrapper(req.stream, encoding='utf-8'), strict=True)
-
     resp = []
+
+    handleEvent = lambda(e): resp.append(to_json(e).decode('utf-8'))
+
+    if os.environ('K_SINK'):
+        handleEvent = SendEvent
+
     for row in reader:
         logging.info("Handling '%s'", row[0])
-
-        resp.append(CloudEvent(attributes, {"city": row[0], "state": row[1]}))
+        event = CloudEvent(attributes, {"city": row[0], "state": row[1]})
+        handleEvent(event)
     
-    return "\n-----\n".join([to_json(e).decode('utf-8') for e in resp])
+    return "\n-----\n".join(resp)
+
+def SendEvent(event: CloudEvent):
+    headers, body = to_binary(event)
+    requests.post(os.environ['K_SINK'], data=body, headers=headers)
