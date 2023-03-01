@@ -11,6 +11,7 @@ spec:
       url: https://github.com/evankanderson/function-weather-demo.git
       ref:
         branch: main
+    subPath: fetch
   build:
     env:
       - name: BP_FUNCTION
