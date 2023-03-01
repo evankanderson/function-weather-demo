@@ -1,4 +1,5 @@
 import csv
+import io
 from typing import Any
 
 from cloudevents.http import CloudEvent
@@ -9,7 +10,7 @@ def main(req: Any):
     # Use the same attributes for all events
     attributes = dict(type="com.example.cityquery", source="upload")
 
-    reader = csv.reader(req.stream)
+    reader = csv.reader(io.TextIOWrapper(req.stream, encoding='utf-8'))
 
     resp = []
     for row in reader:
