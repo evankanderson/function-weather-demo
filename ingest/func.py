@@ -17,7 +17,7 @@ def main(req: Any):
 
     handleEvent = lambda e: resp.append(to_json(e).decode('utf-8'))
 
-    if os.environ('K_SINK'):
+    if os.environ.get('K_SINK'):
         handleEvent = SendEvent
 
     for row in reader:
