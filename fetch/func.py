@@ -32,5 +32,5 @@ def fetch(data: Any, attributes: dict):
     logging.info("Stored %s for %s", res[0].get('shortForecast'), zip)
 
     # Your function implementation goes here
-    return {'type', 'prediction.complete'}, zip
+    return {'type': 'prediction.complete'}, zip
 
