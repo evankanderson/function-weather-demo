@@ -22,7 +22,12 @@ def main(req: Any):
 
     for row in reader:
         logging.info("Handling '%s'", row[0])
-        event = CloudEvent(attributes, {"city": row[0], "state": row[1], "zip": row[2]})
+        data = dict(
+          city= row[0].strip(),
+            state=row[1].strip(),
+            zip=row[2].strip()
+        )
+        event = CloudEvent(attributes, data)
         handleEvent(event)
     
     return "\n-----\n".join(resp)

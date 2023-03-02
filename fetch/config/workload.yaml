@@ -18,4 +18,4 @@ spec:
         value: func.fetch
   env:
   - name: SENTINEL_HOST
-    value: rfs-failover
+    value: rfs-redisfailover
