@@ -8,7 +8,7 @@ from redis import Sentinel, Redis
 def initRedis():
     if os.environ.get('SENTINEL_HOST'):
         s = Sentinel([(os.environ['SENTINEL_HOST'], 26379)])
-        return s.master_for(os.environ.get('MASTER_NAME', 'mymaster-0'))
+        return s.master_for(os.environ.get('MASTER_NAME', 'mymaster'))
     if os.environ.get('REDIS_HOST'):
         return Redis(host=os.environ['REDIS_HOST'])
     logging.warn("Unable to locate ")
