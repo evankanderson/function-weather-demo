@@ -22,7 +22,7 @@ redis = initRedis()
 def fetch(data: Any, attributes: dict):
     if data is None:
         logging.warn("Skipping empty body")
-        return None
+        return
     zip = data.get('zip')
 
     res = noaa.get_forecasts(zip, 'US', type='forecastHourly')
@@ -32,5 +32,5 @@ def fetch(data: Any, attributes: dict):
     logging.info("Stored %s for %s", res[0].get('shortForecast'), zip)
 
     # Your function implementation goes here
-    return None
+    return
 
