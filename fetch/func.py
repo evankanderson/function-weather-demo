@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 from typing import Any
@@ -26,7 +27,7 @@ def fetch(data: Any, attributes: dict):
 
     res = noaa.get_forecasts(zip, 'US', type='forecastHourly')
 
-    redis.set(zip, res[0])
+    redis.set(zip, json.dumps(res[0]))
 
     logging.info("Stored %s for %s", res[0].get('shortForecast'), zip)
 
