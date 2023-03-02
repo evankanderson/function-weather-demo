@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: python-function
-  description: Python function powered by Function Buildpacks for Knative
+  name: ingest
+  description: Upload interface for weather reports
   tags:
     - app-accelerator
     - beta
@@ -12,7 +12,7 @@ metadata:
     - tanzu
     - python
   annotations:
-    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=python-function'
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=ingest'
 spec:
   type: service
   lifecycle: experimental
