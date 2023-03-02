@@ -1,0 +1,15 @@
+apiVersion: sources.knative.dev/v1
+kind: SinkBinding
+metadata:
+  name: ingest-to-broker
+  namespace: dev
+spec:
+  subject:
+    kind: Service
+    apiVersion: serving.knative.dev/v1
+    name: ingest
+  sink:
+    ref:
+      kind: Broker
+      apiVersion: eventing.knative.dev/v1
+      name: default
