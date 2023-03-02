@@ -27,6 +27,9 @@ def main(req: Any):
             state=row[1].strip(),
             zip=row[2].strip()
         )
+        if data['city'] == 'city' and data['state'] == 'state' and data['zip'] == 'zip':
+            # Skip header row
+            continue
         event = CloudEvent(attributes, data)
         handleEvent(event)
     
