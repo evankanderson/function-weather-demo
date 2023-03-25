@@ -1,0 +1,4 @@
+- path: concurrency.json
+  target:
+    group: serving.knative.dev
+    kind: Service

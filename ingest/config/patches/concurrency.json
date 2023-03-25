@@ -1,0 +1,13 @@
+# {"group": "serving.knative.dev", "kind": "Service"}
+[
+  {
+    "op": "add",
+    "path": "spec/template/spec/containerConcurrency",
+    "value": 1
+  },
+  {
+    "op": "add",
+    "path": "spec/templates/spec/timeoutSeconds",
+    "value": "5m"
+  }
+]
